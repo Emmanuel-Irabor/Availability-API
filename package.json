@@ -1,0 +1,23 @@
+{
+  "name": "availability-api",
+  "version": "1.0.0",
+  "description": "A project to display available meeting times across timezones",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Emmanuel-Irabor/Availability-API.git"
+  },
+  "author": "Emmanuel Irabor",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/Emmanuel-Irabor/Availability-API/issues"
+  },
+  "homepage": "https://github.com/Emmanuel-Irabor/Availability-API#readme",
+  "dependencies": {
+    "dotenv": "^16.0.3",
+    "express": "^4.18.2"
+  }
+}
