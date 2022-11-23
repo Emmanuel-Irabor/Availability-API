@@ -14,7 +14,6 @@ const dateConverter = require('../middlewares/dateConverter')
  function getGcalName(countryCode){  
   for (let x in gcalCountries) {
     if(x = countryCode){
-      console.log(gcalCountries[x]);
       var gcalName = gcalCountries[x];
     }
     return gcalName;
@@ -25,6 +24,7 @@ const dateConverter = require('../middlewares/dateConverter')
  *   CALL THE HOLIDAY CHECKER FXN
  * ********************************/
 async function verifyDate(gcalName, date) {
+  // eslint-disable-next-line no-undef
   const googleAPIkey = process.env.GOOGLE_API_KEY
   const check = await holidayChecker.checkHoliday(googleAPIkey, gcalName, date);
 
@@ -61,10 +61,10 @@ function getAvailableSlots(data){
   }
 
   var startTime = Math.max.apply(null, maxDate)
-  var startTime = moment.utc(startTime).format()
+  startTime = moment.utc(startTime).format()
 
   var endTime = Math.min.apply(null, minDate)
-  var endTime = moment.utc(endTime).format()
+  endTime = moment.utc(endTime).format()
 
   let bestSlot = [
     {
@@ -76,10 +76,17 @@ function getAvailableSlots(data){
   return bestSlot
 }
 
+/***************************************
+ *   ROUTE TO RETURN SUPPORTED COUNTRIES
+ * ***************************************/
 router.get('/', (req, res) => {
     res.json({message: 'Availability API server is running!'})
 })
 
+
+/***********************************************
+ *   ROUTE TO HANDLE CHECK-AVAILABILITY REQUESTS
+ * ***********************************************/
 router.post("/check-availability", async (req, res) => {
 
   try{
@@ -90,10 +97,9 @@ router.post("/check-availability", async (req, res) => {
       var countryCode = (data[i].CC).toLowerCase();
       var gcalName = getGcalName(countryCode);
       var dateAndTz = data[i].from;
-
+ 
       //..Check for weekend
       var dayOfWeek = checkForWeekend(dateAndTz);
-      console.log(dayOfWeek)
 
       if(dayOfWeek >= 6){
         //.. 
@@ -104,10 +110,8 @@ router.post("/check-availability", async (req, res) => {
         //..Then check for Holiday
         var utcTimestamp = dateConverter.parseGoogleDate(dateAndTz)
         var date = moment(utcTimestamp).format('YYYY-MM-DD');
-        console.log(date)
 
         var isHoliday = await verifyDate(gcalName, date);
-        console.log(isHoliday)
         if(isHoliday === true){
           res.json({message: `Date for '${countryCode.toUpperCase()}' is a Holiday`});        
           return;
