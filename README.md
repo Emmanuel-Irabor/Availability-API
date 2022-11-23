@@ -38,7 +38,7 @@ This Availabilty API provides a wide range of benefits and solves most common pr
 - Ensure you have docker and docker-compose installed in your environment
 - Use the command below to start the project
   ```
-  - docker-compose up -d
+   docker-compose up -d
   ```
 ## Implementation choice reasons
 - The use of 3rd Party APIs for this project as opposed to a local storage or database ensures that the data remains updated as it is provided by Google and also used 
@@ -48,7 +48,7 @@ by other parties around the world.
 ## Running Tests
 - Run test with the following command
 ```
-- npm run test
+ npm run test
 ```
 ## Note
 I would love to state that this project is still a Work in Progress and can still be very much improved. Thanks.
