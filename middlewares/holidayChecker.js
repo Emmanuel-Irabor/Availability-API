@@ -1,8 +1,8 @@
 const GoolgeCalendarHoliday = require('google-calendar-holiday');
 
-/*******************************
- *    HOLDIAY CHECKER FUNCTION
- * ******************************/
+/******************************
+ *    MAKE CALL TO GOOGLE API
+ * *****************************/
 async function checkHoliday(apiKey, gcalName, date) {
 
     const holiday = new GoolgeCalendarHoliday(
