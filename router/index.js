@@ -66,6 +66,11 @@ function getAvailableSlots(data){
   var endTime = Math.min.apply(null, minDate)
   endTime = moment.utc(endTime).format()
 
+  if(startTime == endTime){
+    //..This means the is no overlap
+    return false;
+  }
+
   let bestSlot = [
     {
       "from": startTime,
@@ -79,8 +84,8 @@ function getAvailableSlots(data){
 /***************************************
  *   ROUTE TO RETURN SUPPORTED COUNTRIES
  * ***************************************/
-router.get('/', (req, res) => {
-    res.json({message: 'Availability API server is running!'})
+router.get('/list-supported-countries', (req, res) => {
+    res.json(gcalCountries);
 })
 
 
@@ -124,8 +129,12 @@ router.post("/check-availability", async (req, res) => {
     if(Array.isArray(avialableSlot)){
       //..
       res.json(avialableSlot);
+      return;
     }
-}
+    else if(avialableSlot == false){
+      res.json({'message': 'There is no overlapping time across the timezones inserted!'})
+    }
+  }
   catch(err) {
     res.status(500).json({message: err});
   }

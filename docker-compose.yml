@@ -1,0 +1,10 @@
+version: "3"
+services:
+  server:
+    container_name: "availability-api"
+    build:
+      dockerfile: Dockerfile
+    ports:
+      - 3000:8080
+    env_file:
+      - .env
