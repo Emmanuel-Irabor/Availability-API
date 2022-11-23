@@ -11,9 +11,9 @@ async function checkHoliday(apiKey, gcalName, date) {
             Holiday: `en.${gcalName}%23holiday%40group.v.calendar.google.com`
         }
     );
-    const isHoliday = await holiday.isHoliday(date) // returns true or false
+    const result = await holiday.isHoliday(date) // returns true or false
     
-    return isHoliday
+    return result
 }
 
 
