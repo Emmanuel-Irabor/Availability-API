@@ -67,7 +67,7 @@ function getAvailableSlots(data){
   endTime = moment.utc(endTime).format()
 
   if(startTime == endTime){
-    //..This means the is no overlap
+    //..This means there is no overlap
     return false;
   }
 
