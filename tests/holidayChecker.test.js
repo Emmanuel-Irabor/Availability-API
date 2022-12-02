@@ -12,6 +12,5 @@ test('Properly checks that a date is a holiday', async () => {
     const date = '2022-12-25';
 
     const result = await isHoliday.checkHoliday(apiKey, gcalName, date);
-    console.log(result);
     expect(result).toBe(true);
 })
